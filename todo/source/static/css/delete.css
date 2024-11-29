@@ -1,0 +1,38 @@
+/* Additional styles for the Delete Task page */
+
+.delete-form {
+    text-align: center; /* Center align the form content */
+}
+
+.delete-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #d9534f; /* Red background for delete */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+.button-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cancel-button {
+    display: inline-block; /* Make it behave like a button */
+    padding: 10px 15px;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

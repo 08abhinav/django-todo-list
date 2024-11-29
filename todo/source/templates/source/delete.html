@@ -1,0 +1,23 @@
+{% extends 'source/base.html' %}
+{% block title %}Delete {{ task.id }}{% endblock %}
+{% load static %}
+{% block style %} 
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="text">
+            <h2>Delete Task</h2>
+        </div>
+        <form action="" method="POST" class="delete-form">
+            {% csrf_token %}
+            <p>Are you sure you want to delete <ins>"{{ task.title }}"</ins>?</p>
+            <button type="submit" class="delete-button">Delete</button>
+        </form>
+        <br>
+        <div class="button-wrapper">
+            <a href="{% url 'tasks' %}" class="cancel-button">Cancel</a>
+        </div>
+    </div>
+{% endblock %}

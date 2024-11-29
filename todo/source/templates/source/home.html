@@ -1,0 +1,69 @@
+{% extends 'source/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="head">
+            <header class="header">
+                <div class="header-content">
+                    <h1>Hello {{ request.user.username|title }}</h1>
+                    <div class="task-info">
+                        <h3>You have <ins><i>{{ count }}</i> incomplete</ins> task{{ count|pluralize:'s' }}</h3>
+                    </div>
+                </div>
+                {% if request.user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="POST" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% endif %}
+            </header>
+            <hr class="separator">
+            <div id="search-add-wrapper">
+                <form method="GET" class="search-form">
+                    <input id="input1" type="text" name="search-area" placeholder="Search your tasks" value="{{ search_input }}">
+                    <input id="input2" type="submit" value="Search">
+                </form>
+                <a class="add-link" href="{% url 'create' %}">
+                    <span>&#x2b;</span>
+                </a>
+            </div>
+        </div>
+        <hr class="separator">
+
+        <div class="task-items-wrapper">
+            {% for i in tasks %}
+                <div class="task-wrapper {% if i.complete %}completed{% endif %}">
+                    <div class="task-title">
+                        <div class="task-icon">
+                            <a href="{% url 'update-task' i.id %}">
+                                {% if i.complete %}
+                                    <s>{{ i }}</s>
+                                {% else %}
+                                    {{ i }}
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="task-actions">
+                            {% if not i.complete %}
+                                <a class="edit-link" href="{% url 'update-task' i.id %}">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            {% endif %}
+                            <a class="delete-link" href="{% url 'delete-task' i.id %}">
+                                <i class="material-icons">&#xe872;</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <h3>No items in the list</h3>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

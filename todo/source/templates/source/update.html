@@ -1,0 +1,22 @@
+{% extends 'source/base.html' %}
+{% block title %}Update Task {{task.id}}{% endblock %}
+{% load static %}
+{% block style %} 
+    <link rel="stylesheet" href="{% static  'css/home.css'%}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h2>Update</h2>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" value="submit">Submit</button>
+    </form>
+    <br>
+    <button><a href="{% url 'tasks'%}">Go Home</a></button>
+</div>
+{% endblock %}

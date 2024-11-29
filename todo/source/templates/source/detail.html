@@ -1,0 +1,14 @@
+{% extends 'source/base.html' %}
+{% block title %}Task {{tasks.id }}{% endblock %}
+{% load static %}
+{% block style %} 
+    <link rel="stylesheet" href="{% static  'css/home.css'%}">
+{% endblock %}
+
+
+{% block content %}
+    <h2>Task: <ins>{{tasks}}</ins></h2>
+    <p><strong>Description: </strong>{{tasks.description}}</p>
+
+    <button><a href="{% url 'tasks' %}">Go back</a></button>
+{% endblock %}

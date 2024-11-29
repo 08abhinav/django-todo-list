@@ -1,0 +1,26 @@
+{% extends 'source/base.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% block style %} 
+    <link rel="stylesheet" href="{% static  'css/home.css'%}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <div class="header">
+            <h1>Login</h1>
+        </div>
+        <div class="login">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" value="Login">Login</button>
+            </form>
+            <br>
+            <h5>Don't have an account?<a href="{% url 'register' %}"> Register</a></h5>
+            <br>
+            <!-- <button><a href="{% url 'tasks' %}">Cancel</a></button> -->
+        </div>
+</div>
+{% endblock %}
